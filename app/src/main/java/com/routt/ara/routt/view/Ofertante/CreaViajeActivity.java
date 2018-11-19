@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -138,7 +139,22 @@ public class CreaViajeActivity extends AppCompatActivity implements View.OnClick
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-                    efecha.setText(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);
+                    String dia;
+                    String mes;
+                    int tamañoDia = (Integer.toString(dayOfMonth)).length();
+                    int tamañoMes = (Integer.toString(monthOfYear+1)).length();
+
+                    if(tamañoDia == 1){
+                        dia = "0" + (Integer.toString(dayOfMonth));
+                    }else
+                        dia = Integer.toString(dayOfMonth);
+
+                    if(tamañoMes == 1){
+                        mes = "0" + (Integer.toString(monthOfYear+1));
+                    }else
+                        mes = Integer.toString(monthOfYear+1);
+
+                    efecha.setText(dia+"/"+mes+"/"+year);
                 }
             }
             ,año, mes, dia);

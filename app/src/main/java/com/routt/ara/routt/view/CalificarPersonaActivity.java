@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.routt.ara.routt.R;
 import com.routt.ara.routt.model.Persona;
+import com.routt.ara.routt.view.Ofertante.ContenedorOfertanteActivity;
 import com.routt.ara.routt.view.Trailero.ContenedorTraileroActivity;
 
 public class CalificarPersonaActivity extends AppCompatActivity {
@@ -52,7 +53,7 @@ public class CalificarPersonaActivity extends AppCompatActivity {
                         if(correoPersona.equals(persona.getCorreo())){
                             noFeliz = persona.getNoHappyFace();
                             noTriste = persona.getNoSosoFace();
-                            noEnojado = persona.getNoSosoFace();
+                            noEnojado = persona.getNoAngryFace();
                             idPersona = snapshot.getKey();
                         }
                     }
@@ -69,13 +70,14 @@ public class CalificarPersonaActivity extends AppCompatActivity {
         // tipo = 0 ----> Trailero ; tipo = 1 ----> Ofertante
         if(tipoPersona == 0){
             databaseReference.child("Viajes").child(idViaje).child("calificoTrailero").setValue(true);
+            Intent intent = new Intent(this, ContenedorTraileroActivity.class);
+            startActivity(intent);
         }else
             if(tipoPersona == 1){
                 databaseReference.child("Viajes").child(idViaje).child("calificoOfertante").setValue(true);
+                Intent intent = new Intent(this, ContenedorOfertanteActivity.class);
+                startActivity(intent);
             }
-
-        Intent intent = new Intent(this, ContenedorTraileroActivity.class);
-        startActivity(intent);
     }
 
     public void SumaCaraFeliz(View view){

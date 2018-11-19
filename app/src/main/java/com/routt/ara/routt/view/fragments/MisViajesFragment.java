@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,10 @@ import com.routt.ara.routt.view.InfoViaje;
 import com.routt.ara.routt.view.Ofertante.ContenedorOfertanteActivity;
 import com.routt.ara.routt.view.Ofertante.CreaViajeActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,9 +46,12 @@ public class MisViajesFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
-    private String correo;
+    private String correo, colorRojo, colorVerde, colorAmarillo, colorGris;
+
+    private Date fechaViaje, fechaActual;
 
     private ArrayList<String> colores = new ArrayList<>();
+    private ArrayList<Boolean> disponible = new ArrayList<>();
 
     public MisViajesFragment() {
         // Required empty public constructor
@@ -58,6 +65,11 @@ public class MisViajesFragment extends Fragment {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         viajesRecycler = (RecyclerView) view.findViewById(R.id.pictureRecycler);
+
+        colorRojo = "#BD2A00";
+        colorVerde = "#93BD00";
+        colorAmarillo = "#E7E300";
+        colorGris = "#262626";
 
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -89,6 +101,7 @@ public class MisViajesFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 viajes.clear();
                 colores.clear();
+                disponible.clear();
                 if(dataSnapshot.exists()){
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                         Viaje viaje = snapshot.getValue(Viaje.class);
@@ -97,8 +110,12 @@ public class MisViajesFragment extends Fragment {
                                 //Este ofertante ya califico el viaje
                             }else {
                                 viajes.add(viaje);
-                                //agregando colores
-                                colores.add("#262626");
+                                //agregar colores
+                                String fechaV = viaje.getFechaApoxSalida();
+                                Boolean disponibleV = viaje.getDisponible();
+                                disponible.add(disponibleV);
+                                String color = traeColor(fechaV, disponibleV);
+                                colores.add(color);
                             }
                         }
                     }
@@ -112,6 +129,51 @@ public class MisViajesFragment extends Fragment {
         });
     }
 
+    public String traeColor(String fechaV, Boolean disponible){
+        String color;
+
+        Calendar cal = Calendar.getInstance();
+        String cadenaFecha = ((cal.get(Calendar.DAY_OF_MONTH))-1) + "/" + ((cal.get(Calendar.MONTH))+1) + "/" + (cal.get(Calendar.YEAR));
+        try{
+            fechaActual = new SimpleDateFormat("dd/MM/yyyy").parse(cadenaFecha);
+        }catch(Exception e){
+            Log.w("AgendaViajes", "Error al parsear fecha actual " + e.getMessage());
+        }
+
+        int diaV = Integer.parseInt(String.valueOf(fechaV.charAt(0)) + String.valueOf(fechaV.charAt(1)));
+        int mesV = Integer.parseInt(String.valueOf(fechaV.charAt(3)) + String.valueOf(fechaV.charAt(4)));
+        int añoV = Integer.parseInt(String.valueOf(fechaV.charAt(6)) + String.valueOf(fechaV.charAt(7)) + String.valueOf(fechaV.charAt(8)) + String.valueOf(fechaV.charAt(9)));
+
+        String cadenaFechaViaje = diaV + "/" + mesV + "/" + añoV;
+        try{
+            fechaViaje = new SimpleDateFormat("dd/MM/yyyy").parse(cadenaFechaViaje);
+        }catch(Exception e){
+            Log.w("AgendaViajes", "Error al parsear fecha de viaje " + e.getMessage());
+        }
+
+        if((Boolean.toString(disponible)).equals("false")){
+        //Ya tiene trailero
+            if(fechaActual.after(fechaViaje)){
+                //Ya se esta llevando a cabo
+                color = colorRojo;
+            }else{
+                //Aun no se esta llevando a cabo
+                color = colorAmarillo;
+            }
+        }else{
+        //No tiene trailero
+            if(fechaActual.after(fechaViaje)){
+                //Ya se esta llevando a cabo
+                color = colorGris;
+            }else{
+                //Aun no se esta llevando a cabo
+                color = colorVerde;
+            }
+        }
+
+        return color;
+    }
+
     public void imprimirTarjetas(){
         //Imprimiendo las cardView
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -123,18 +185,34 @@ public class MisViajesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), InfoViaje.class);
-                intent.putExtra("cantidadCarga", Integer.toString(viajes.get(viajesRecycler.getChildAdapterPosition(view)).getCantidadCarga()));
-                intent.putExtra("carga", viajes.get(viajesRecycler.getChildAdapterPosition(view)).getCarga());
-                intent.putExtra("dobleRemolque", Boolean.toString(viajes.get(viajesRecycler.getChildAdapterPosition(view)).getDobleRemolque()));
-                intent.putExtra("fechaAproxSalida", viajes.get(viajesRecycler.getChildAdapterPosition(view)).getFechaApoxSalida());
-                intent.putExtra("nombreLugarLlegada", viajes.get(viajesRecycler.getChildAdapterPosition(view)).getNombreLugarLlegada());
-                intent.putExtra("nombreLugarSalida", viajes.get(viajesRecycler.getChildAdapterPosition(view)).getNombreLugarSalida());
-                intent.putExtra("pago", Integer.toString(viajes.get(viajesRecycler.getChildAdapterPosition(view)).getPago()));
-                intent.putExtra("rControl", Boolean.toString(viajes.get(viajesRecycler.getChildAdapterPosition(view)).getrControl()));
-                intent.putExtra("tipoCaja", viajes.get(viajesRecycler.getChildAdapterPosition(view)).getTipoCaja());
 
                 intent.putExtra("IdViaje", viajes.get(viajesRecycler.getChildAdapterPosition(view)).getIdViaje());
-                intent.putExtra("btnVisible", "No");
+
+                intent.putExtra("btnAgregaViajeALista", "No");
+                intent.putExtra("btnEliminarViajeDeLista", "No");
+
+                String color = traeColor(viajes.get(viajesRecycler.getChildAdapterPosition(view)).getFechaApoxSalida(), disponible.get(viajesRecycler.getChildAdapterPosition(view)));
+                if(color.equals(colorVerde)){
+                    intent.putExtra("btnIrAPerfilOfertante", "No");
+                    intent.putExtra("btnEliminarViaje", "Si");
+                    intent.putExtra("btnCalificarOfertante", "No");
+                }else
+                    if(color.equals(colorRojo)){
+                        intent.putExtra("btnIrAPerfilOfertante", "Si");
+                        intent.putExtra("btnEliminarViaje", "No");
+                        intent.putExtra("btnCalificarOfertante", "Si");
+                    }else
+                        if(color.equals(colorAmarillo)){
+                            intent.putExtra("btnIrAPerfilOfertante", "Si");
+                            intent.putExtra("btnEliminarViaje", "Si");
+                            intent.putExtra("btnCalificarOfertante", "No");
+                        }else
+                            if(color.equals(colorGris)){
+                                intent.putExtra("btnIrAPerfilOfertante", "No");
+                                intent.putExtra("btnEliminarViaje", "Si");
+                                intent.putExtra("btnCalificarOfertante", "No");
+                            }
+
                 startActivity(intent);
             }
         });

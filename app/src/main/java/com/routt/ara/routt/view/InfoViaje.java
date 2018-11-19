@@ -31,12 +31,12 @@ import java.util.Map;
 public class InfoViaje extends AppCompatActivity {
 
     private TextView tvCantidadCarga, tvCarga, tvDobleRemolque, tvFechaAproxSalida, tvNombreLugarLlegada, tvNombreLugarSalida, tvPago, tvRControl, tvTipoCaja;
-    private String idViaje, correoPersona, correo, txtAgregaViajeALista, txtbtnIrAPerfilOfertante, txtbtnEliminarViajeDeLista, txtbtnCalificarOfertante;
+    private String idViaje, correoPersona, correo, txtAgregaViajeALista, txtbtnIrAPerfilOfertante, txtbtnEliminarViajeDeLista, txtbtnCalificarOfertante, txtbtnEliminarViaje;
     private int tipoPersona;
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    private Button btnAgregaViajeALista, btnIrAPerfilOfertante, btnEliminarViajeDeLista, btnCalificarOfertante;
+    private Button btnAgregaViajeALista, btnIrAPerfilOfertante, btnEliminarViajeDeLista, btnCalificarOfertante, btnEliminarViaje;
 
 
     @Override
@@ -48,6 +48,7 @@ public class InfoViaje extends AppCompatActivity {
         btnIrAPerfilOfertante = (Button) findViewById(R.id.btnIrAPerfilOfertante);
         btnEliminarViajeDeLista = (Button) findViewById(R.id.btnEliminarViajeDeLista);
         btnCalificarOfertante = (Button) findViewById(R.id.btnCalificarOfertante);
+        btnEliminarViaje = (Button) findViewById(R.id.btnEliminarViaje);
 
         tvCantidadCarga = (TextView) findViewById(R.id.cantidadCarga);
         tvCarga = (TextView) findViewById(R.id.carga);
@@ -68,13 +69,12 @@ public class InfoViaje extends AppCompatActivity {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
                     correo = firebaseUser.getEmail();
+                    traePersona();
+                    traeDatosViaje();
                 }
             }
         };
-        traePersona();
         recibeDatos();
-        traeDatosViaje();
-
     }
 
     public void recibeDatos(){
@@ -86,6 +86,7 @@ public class InfoViaje extends AppCompatActivity {
         txtbtnIrAPerfilOfertante = extras.getString("btnIrAPerfilOfertante");
         txtbtnEliminarViajeDeLista = extras.getString("btnEliminarViajeDeLista");
         txtbtnCalificarOfertante = extras.getString("btnCalificarOfertante");
+        txtbtnEliminarViaje = extras.getString("btnEliminarViaje");
 
         Botones();
     }
@@ -150,6 +151,13 @@ public class InfoViaje extends AppCompatActivity {
         if(txtbtnCalificarOfertante.equals("No")){
             btnCalificarOfertante.setVisibility(View.INVISIBLE);
         }
+
+        if(txtbtnEliminarViaje.equals("Si")){
+            btnEliminarViaje.setVisibility(View.VISIBLE);
+        }else
+        if(txtbtnEliminarViaje.equals("No")){
+            btnEliminarViaje.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void agregandoViajeAMiLista(View view){
@@ -180,6 +188,11 @@ public class InfoViaje extends AppCompatActivity {
         intent.putExtra("idViaje", idViaje);
         intent.putExtra("tipoPersona", tipoPersona);
         startActivity(intent);
+    }
+
+    public void eliminandoViaje(View view){
+        databaseReference.child("Viajes").child(idViaje).removeValue();
+        Toast.makeText(this, "El viaje fue eliminado", Toast.LENGTH_SHORT).show();
     }
 
     public void traePersona(){

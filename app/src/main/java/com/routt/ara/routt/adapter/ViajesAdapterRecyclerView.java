@@ -47,7 +47,6 @@ implements View.OnClickListener{
         holder.nombreLugarCard.setText(viaje.getNombreLugarLlegada());
         holder.fechaCard.setText(viaje.getFechaApoxSalida());
         holder.pagoCard.setText(Integer.toString(viaje.getPago()));
-        Log.w("ADAPTER", "COLOR: " + colores.get(position));
         holder.cardView.setBackgroundColor(Color.parseColor(colores.get(position)));
     }
 

@@ -16,7 +16,7 @@ import com.routt.ara.routt.model.Persona;
 
 public class PerfilActivity extends AppCompatActivity {
 
-    private String correoOfertante;
+    private String correoPersona;
 
     private DatabaseReference databaseReference;
     private TextView nombre, apellidos, edad, noCaraFeliz, noCaraTriste, noCaraEnojada;
@@ -41,7 +41,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     public void recibeDatos(){
         Bundle extras = getIntent().getExtras();
-        correoOfertante = extras.getString("correoOfertante");
+        correoPersona = extras.getString("correoOfertante");
     }
 
     public void traePersona(){
@@ -51,7 +51,7 @@ public class PerfilActivity extends AppCompatActivity {
                 if(dataSnapshot.exists()){
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                         Persona persona = snapshot.getValue(Persona.class);
-                        if(correoOfertante.equals(persona.getCorreo())){
+                        if(correoPersona.equals(persona.getCorreo())){
                             nombre.setText(persona.getNombre());
                             apellidos.setText(persona.getApePaat() +" "+ persona.getApeMat());
                             edad.setText(persona.getEdad() + " Años");

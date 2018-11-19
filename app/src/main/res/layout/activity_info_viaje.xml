@@ -55,8 +55,8 @@
             android:id="@+id/btnIrAPerfilOfertante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/IrAPerfilOfertante"
-            android:onClick="yendoAPerfilDeLaPersona"/>
+            android:onClick="yendoAPerfilDeLaPersona"
+            android:text="@string/IrAPerfilDeLaPersona" />
         <Button
             android:id="@+id/btnEliminarViajeDeLista"
             android:layout_width="match_parent"
@@ -67,7 +67,16 @@
             android:id="@+id/btnCalificarOfertante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/calificarOfertante"
+            android:text="@string/calificarPersona"
             android:onClick="calificandoPersona"/>
+
+
+
+        <Button
+            android:id="@+id/btnEliminarViaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/eliminarViaje"
+            android:onClick="eliminandoViaje"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

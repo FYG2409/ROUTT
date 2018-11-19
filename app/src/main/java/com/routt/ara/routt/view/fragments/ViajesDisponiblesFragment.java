@@ -95,6 +95,7 @@ public class ViajesDisponiblesFragment extends Fragment {
                 intent.putExtra("btnIrAPerfilOfertante", "Si");
                 intent.putExtra("btnEliminarViajeDeLista", "No");
                 intent.putExtra("btnCalificarOfertante", "No");
+                intent.putExtra("btnEliminarViaje", "No");
 
                 startActivity(intent);
             }

@@ -48,4 +48,7 @@
     <string name="IrAPerfilOfertante">Ir a perfil del ofertante</string>
     <string name="eliminarDeMiLista">Eliminar viaje de mi lista</string>
     <string name="calificarOfertante">Calificar ofertante</string>
+    <string name="IrAPerfilDeLaPersona">Ir a perfil de la persona</string>
+    <string name="calificarPersona">Califica persona</string>
+    <string name="eliminarViaje">Eliminar viaje</string>
 </resources>
