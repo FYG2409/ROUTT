@@ -28,7 +28,9 @@
         <activity android:name=".SeleccionaTipoActivity" />
         <activity android:name=".CreaOfertanteActivity" />
         <activity android:name=".view.Ofertante.ContenedorOfertanteActivity" />
-        <activity android:name=".view.InfoViaje"></activity>
+        <activity android:name=".view.InfoViaje" />
+        <activity android:name=".view.PerfilActivity" />
+        <activity android:name=".view.CalificarPersonaActivity"></activity>
     </application>
 
 </manifest>

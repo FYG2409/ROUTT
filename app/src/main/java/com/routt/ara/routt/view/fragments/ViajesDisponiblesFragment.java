@@ -88,18 +88,14 @@ public class ViajesDisponiblesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), InfoViaje.class);
-                intent.putExtra("cantidadCarga", Integer.toString(viajes.get(viajesRecycler.getChildAdapterPosition(view)).getCantidadCarga()));
-                intent.putExtra("carga", viajes.get(viajesRecycler.getChildAdapterPosition(view)).getCarga());
-                intent.putExtra("dobleRemolque", Boolean.toString(viajes.get(viajesRecycler.getChildAdapterPosition(view)).getDobleRemolque()));
-                intent.putExtra("fechaAproxSalida", viajes.get(viajesRecycler.getChildAdapterPosition(view)).getFechaApoxSalida());
-                intent.putExtra("nombreLugarLlegada", viajes.get(viajesRecycler.getChildAdapterPosition(view)).getNombreLugarLlegada());
-                intent.putExtra("nombreLugarSalida", viajes.get(viajesRecycler.getChildAdapterPosition(view)).getNombreLugarSalida());
-                intent.putExtra("pago", Integer.toString(viajes.get(viajesRecycler.getChildAdapterPosition(view)).getPago()));
-                intent.putExtra("rControl", Boolean.toString(viajes.get(viajesRecycler.getChildAdapterPosition(view)).getrControl()));
-                intent.putExtra("tipoCaja", viajes.get(viajesRecycler.getChildAdapterPosition(view)).getTipoCaja());
 
                 intent.putExtra("IdViaje", viajes.get(viajesRecycler.getChildAdapterPosition(view)).getIdViaje());
-                intent.putExtra("btnVisible", "Si");
+
+                intent.putExtra("btnAgregaViajeALista", "Si");
+                intent.putExtra("btnIrAPerfilOfertante", "Si");
+                intent.putExtra("btnEliminarViajeDeLista", "No");
+                intent.putExtra("btnCalificarOfertante", "No");
+
                 startActivity(intent);
             }
         });

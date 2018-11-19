@@ -112,7 +112,7 @@ public class CreaViajeActivity extends AppCompatActivity implements View.OnClick
             fechaHora = Fecha+" "+Hora;
             //REGISTRANDO
             String xId = databaseReference.push().getKey();
-            Viaje viaje = new Viaje(xId, correoCurrent, NomLugarSalida, NomLugarLlegada, Pago, "Imagen1", SpinnerTipoCaja, Carga, Cantidad, RControl, Full, true, fechaHora, "Ubicacion Lugar Salida", "Ubicacion Lugar Llegada", "");
+            Viaje viaje = new Viaje(xId, correoCurrent, NomLugarSalida, NomLugarLlegada, Pago, "Imagen1", SpinnerTipoCaja, Carga, Cantidad, RControl, Full, true, fechaHora, "Ubicacion Lugar Salida", "Ubicacion Lugar Llegada", "", false, false);
             databaseReference.child("Viajes").child(xId).setValue(viaje);
             Toast.makeText(this, "El viaje fue registrado", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ContenedorOfertanteActivity.class);

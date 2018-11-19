@@ -44,4 +44,8 @@
     <string name="cierraSesion">Cierra Sesion</string>
     <string name="eliminar">Eliminar</string>
     <string name="editar">Editar</string>
+    <string name="agregarAMiLista">Agregar a mi lista</string>
+    <string name="IrAPerfilOfertante">Ir a perfil del ofertante</string>
+    <string name="eliminarDeMiLista">Eliminar viaje de mi lista</string>
+    <string name="calificarOfertante">Calificar ofertante</string>
 </resources>

@@ -93,9 +93,13 @@ public class MisViajesFragment extends Fragment {
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                         Viaje viaje = snapshot.getValue(Viaje.class);
                         if((viaje.getCorreoOfertante()).equals(correo)){
-                            viajes.add(viaje);
-                            //agregando colores
-                            colores.add("#262626");
+                            if(viaje.getCalificoOfertante()){
+                                //Este ofertante ya califico el viaje
+                            }else {
+                                viajes.add(viaje);
+                                //agregando colores
+                                colores.add("#262626");
+                            }
                         }
                     }
                     imprimirTarjetas();

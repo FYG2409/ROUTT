@@ -36,7 +36,6 @@ implements View.OnClickListener{
         View view = LayoutInflater.from(parent.getContext()).inflate(resource, parent, false);
 
         view.setOnClickListener(this);
-
         //aqui
 
         return new PictureViewHolder(view);

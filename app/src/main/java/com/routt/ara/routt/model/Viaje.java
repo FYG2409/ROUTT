@@ -17,8 +17,10 @@ public class Viaje {
     private String ubicacionLugarSalida;
     private String ubicacionLugarLlegada;
     private String correoTrailero;
+    private Boolean calificoTrailero;
+    private Boolean calificoOfertante;
 
-    public Viaje(String idViaje, String correoOfertante, String nombreLugarSalida, String nombreLugarLlegada, int pago, String imagenFondo, String tipoCaja, String carga, int cantidadCarga, Boolean rControl, Boolean dobleRemolque, Boolean disponible, String fechaApoxSalida, String ubicacionLugarSalida, String ubicacionLugarLlegada, String correoTrailero) {
+    public Viaje(String idViaje, String correoOfertante, String nombreLugarSalida, String nombreLugarLlegada, int pago, String imagenFondo, String tipoCaja, String carga, int cantidadCarga, Boolean rControl, Boolean dobleRemolque, Boolean disponible, String fechaApoxSalida, String ubicacionLugarSalida, String ubicacionLugarLlegada, String correoTrailero, Boolean calificoTrailero, Boolean calificoOfertante) {
         this.idViaje = idViaje;
         this.correoOfertante = correoOfertante;
         this.nombreLugarSalida = nombreLugarSalida;
@@ -35,6 +37,8 @@ public class Viaje {
         this.ubicacionLugarSalida = ubicacionLugarSalida;
         this.ubicacionLugarLlegada = ubicacionLugarLlegada;
         this.correoTrailero = correoTrailero;
+        this.calificoTrailero = calificoTrailero;
+        this.calificoOfertante = calificoOfertante;
     }
 
     public Viaje() {
@@ -166,5 +170,21 @@ public class Viaje {
 
     public void setCorreoTrailero(String correoTrailero) {
         this.correoTrailero = correoTrailero;
+    }
+
+    public Boolean getCalificoTrailero() {
+        return calificoTrailero;
+    }
+
+    public void setCalificoTrailero(Boolean calificoTrailero) {
+        this.calificoTrailero = calificoTrailero;
+    }
+
+    public Boolean getCalificoOfertante() {
+        return calificoOfertante;
+    }
+
+    public void setCalificoOfertante(Boolean calificoOfertante) {
+        this.calificoOfertante = calificoOfertante;
     }
 }
