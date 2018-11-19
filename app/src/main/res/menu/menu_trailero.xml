@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/agenda"
+        android:icon="@drawable/agenda_icon"
+        android:title="@string/tab_agenda"
+        />
+
+    <item
+        android:id="@+id/viajeDisponible"
+        android:icon="@drawable/viaje_icon"
+        android:title="@string/tab_viajes"
+        />
+
+    <item
+        android:id="@+id/perfil"
+        android:icon="@drawable/perfil_icon"
+        android:title="@string/tab_perfil"
+        />
+
+    <item
+        android:id="@+id/salir"
+        android:icon="@drawable/salir_icon"
+        android:title="@string/tab_salir"
+        />
+
+</menu>

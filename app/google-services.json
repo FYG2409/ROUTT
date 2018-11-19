@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "723748126149",
+    "firebase_url": "https://routt-c26c0.firebaseio.com",
+    "project_id": "routt-c26c0",
+    "storage_bucket": "routt-c26c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723748126149:android:0cb09fa1ff71e70a",
+        "android_client_info": {
+          "package_name": "com.routt.ara.routt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723748126149-juqlvbdilvb25doi7b5k0bk6ttji253i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.routt.ara.routt",
+            "certificate_hash": "e39acab953115fc88a668c9644cc30d6df817ba2"
+          }
+        },
+        {
+          "client_id": "723748126149-u4srui81r1rdp37pqr1brcok6ge304p3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6A-GpV9wdgenfVdNnUqdoT_hY2sRxVFc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723748126149-u4srui81r1rdp37pqr1brcok6ge304p3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

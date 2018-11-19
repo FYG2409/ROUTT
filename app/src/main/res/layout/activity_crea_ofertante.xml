@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreaOfertanteActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <EditText
+                android:id="@+id/nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_nombre"
+                android:inputType="textPersonName"
+                android:digits="abcdefghijklmnñopqrstuvxwyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
+                android:maxLength="20" />
+            <EditText
+                android:id="@+id/apePat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:digits="abcdefghijklmnñopqrstuvxwyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
+                android:maxLength="20"
+                android:hint="@string/hint_apellido_Paterno"/>
+            <EditText
+                android:id="@+id/apeMat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:digits="abcdefghijklmnñopqrstuvxwyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
+                android:maxLength="20"
+                android:hint="@string/hint_apellido_Materno"/>
+            <EditText
+                android:id="@+id/edad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned"
+                android:maxLength="2"
+                android:hint="@string/hint_edad"/>
+            <EditText
+                android:id="@+id/correo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="@string/hint_correoElectronico"/>
+            <EditText
+                android:id="@+id/contra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="@string/hint_contraseña"/>
+            <EditText
+                android:id="@+id/confirmaContra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="@string/hint_confirma_Contraseña"/>
+            <ImageView
+                android:id="@+id/imagenId"
+                android:layout_width="200dp"
+                android:layout_gravity="center"
+                android:layout_height="150dp"
+                android:background="@drawable/agrega_imagen_icon"
+                android:onClick="corre"
+                android:elevation="20dp"
+                android:scaleType="centerCrop"/>
+
+            <Button
+                android:id="@+id/btnAgregaPersona"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registrate"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@color/azulFuerte"
+                android:onClick="creaPersona"
+                android:textColor="@android:color/black"/>
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
