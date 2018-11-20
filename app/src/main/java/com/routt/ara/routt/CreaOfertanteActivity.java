@@ -1,19 +1,25 @@
 package com.routt.ara.routt;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.renderscript.Float3;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,16 +29,22 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.routt.ara.routt.MainActivity;
 import com.routt.ara.routt.R;
 import com.routt.ara.routt.model.Persona;
 import com.routt.ara.routt.model.Viaje;
+import com.routt.ara.routt.view.PresenterPrincipal;
 
 import java.util.ArrayList;
 
 public class CreaOfertanteActivity extends AppCompatActivity {
 
-    private ImageView imagen;
+    private FloatingActionButton cargaImg;
+    private ImageView imagen ;
+
     private EditText nombre, apePat, apeMat, edad, correo, contra, confirmaContra;
 
     private String txtImagen, txtNombre, txtApePat, txtApeMat, txtCorreo, txtContra, txtConfirmaContra;
@@ -43,6 +55,10 @@ public class CreaOfertanteActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authStateListener;
     private DatabaseReference databaseReference;
 
+    private StorageReference mStorage;
+    private static  final int GALLERY_INTENT =1;
+    private ProgressDialog progressDialo;  // mensaje de carga de imagen
+    private PresenterPrincipal presenterPrincipal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,29 +74,63 @@ public class CreaOfertanteActivity extends AppCompatActivity {
         contra = (EditText) (findViewById(R.id.contra));
         confirmaContra = (EditText) (findViewById(R.id.confirmaContra));
 
+
+        firebaseAuth= FirebaseAuth.getInstance();
+
+        cargaImg=(FloatingActionButton) findViewById(R.id.btnImagen);
+        mStorage= FirebaseStorage.getInstance().getReference();
+        progressDialo=new ProgressDialog(this);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         inicializa();
-    }
-    public void corre(View view){
-        cargarImagen();
-    }
 
-    public void cargarImagen(){
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/");
-        startActivityForResult(intent.createChooser(intent, "Selecciona una imagen"),10);
+        cargaImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, GALLERY_INTENT);
+
+            }
+        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK){
-            Uri path = data.getData();
-            imagen.setImageURI(path);
+        if(requestCode== GALLERY_INTENT && requestCode != RESULT_OK){
+            progressDialo.setTitle("Cargando ..");
+            progressDialo.setMessage("Cargando previsualización");
+            progressDialo.setCancelable(false);
+            progressDialo.show();
+            txtNombre = nombre.getText().toString();
+
+            final Uri uri = data.getData();
+            final StorageReference filePath=mStorage.child("Fotos").child(txtNombre).child(uri.getLastPathSegment());//lo guarda aqui
+            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    progressDialo.dismiss();
+
+                    Uri descargarImg= taskSnapshot.getDownloadUrl();
+                    Glide.with(CreaOfertanteActivity.this)
+                            .load(descargarImg)
+                            .into(imagen);
+
+                    PresenterPrincipal presenterPrincipal=new PresenterPrincipal(descargarImg, txtNombre);
+                    Toast.makeText(CreaOfertanteActivity.this, "Imagen subida correctamente", Toast.LENGTH_LONG).show();
+
+                }
+            });
+        }
+        else {
+            Toast.makeText(CreaOfertanteActivity.this, "algo esta mal", Toast.LENGTH_LONG).show();
         }
     }
 
+
     public void creaPersona(View view){
+
+
         //txtImagen = imagen.getText().toString();
         txtNombre = nombre.getText().toString();
         txtApeMat = apeMat.getText().toString();
@@ -89,6 +139,7 @@ public class CreaOfertanteActivity extends AppCompatActivity {
         txtContra = contra.getText().toString();
         txtConfirmaContra = confirmaContra.getText().toString();
 
+    presenterPrincipal.getmStorageRef();
         //VALIDACIONES
         //Valida que todos los campos esten llenos
         if(TextUtils.isEmpty(txtNombre) || TextUtils.isEmpty(txtApeMat) || TextUtils.isEmpty(txtApePat) || TextUtils.isEmpty(edad.getText().toString()) || TextUtils.isEmpty(txtCorreo) || TextUtils.isEmpty(txtContra) || TextUtils.isEmpty(txtConfirmaContra)){

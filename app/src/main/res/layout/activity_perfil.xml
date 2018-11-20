@@ -18,6 +18,7 @@
         android:layout_gravity="center|top"
         android:layout_marginTop="77.5dp"
         android:src="@drawable/foto_perfil"
+        android:id="@+id/foto"
         android:elevation="10dp"/>
 
     <LinearLayout
