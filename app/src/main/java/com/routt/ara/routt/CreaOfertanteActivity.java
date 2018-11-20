@@ -116,7 +116,7 @@ public class CreaOfertanteActivity extends AppCompatActivity {
                             .load(descargarImg)
                             .into(imagen);
 
-                    PresenterPrincipal presenterPrincipal=new PresenterPrincipal(descargarImg, txtNombre);
+
                     Toast.makeText(CreaOfertanteActivity.this, "Imagen subida correctamente", Toast.LENGTH_LONG).show();
 
                 }
@@ -139,7 +139,7 @@ public class CreaOfertanteActivity extends AppCompatActivity {
         txtContra = contra.getText().toString();
         txtConfirmaContra = confirmaContra.getText().toString();
 
-    presenterPrincipal.getmStorageRef();
+
         //VALIDACIONES
         //Valida que todos los campos esten llenos
         if(TextUtils.isEmpty(txtNombre) || TextUtils.isEmpty(txtApeMat) || TextUtils.isEmpty(txtApePat) || TextUtils.isEmpty(edad.getText().toString()) || TextUtils.isEmpty(txtCorreo) || TextUtils.isEmpty(txtContra) || TextUtils.isEmpty(txtConfirmaContra)){
