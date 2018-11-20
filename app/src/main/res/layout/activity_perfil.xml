@@ -9,7 +9,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="155dp"
-        android:background="@color/amarilloFuerte"
+        android:background="@color/salmon"
         android:elevation="5dp"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -20,7 +20,9 @@
         android:src="@drawable/foto_perfil"
         android:id="@+id/foto"
         android:elevation="10dp"/>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="338dp"
@@ -74,7 +76,7 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/cara_feliz_icon" />
+                    android:src="@drawable/happy_face_icon" />
 
                 <TextView
                     android:id="@+id/noCaraFeliz"
@@ -92,7 +94,7 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/cara_triste_icon" />
+                    android:src="@drawable/sad_face_icon" />
 
                 <TextView
                     android:id="@+id/noCaraTriste"
@@ -110,7 +112,7 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/cara_enojada_icon" />
+                    android:src="@drawable/angry_face_icon" />
 
                 <TextView
                     android:id="@+id/noCaraEnojada"
@@ -120,5 +122,5 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
+    </ScrollView>
 </FrameLayout>

@@ -25,6 +25,7 @@
         android:layout_gravity="bottom"
         design:itemTextColor="@color/blanco"
         design:itemBackground="@color/azulFuerte"
+        design:itemIconTint="@color/blanco"
         design:menu="@menu/menu_ofertante" />
 
 </RelativeLayout>

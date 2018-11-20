@@ -45,8 +45,6 @@ public class AgendaViajesFragment extends Fragment {
 
     private String correo, colorRojo, colorVerde;
 
-    private CardView tarjetita;
-
     private Date fechaViaje, fechaActual;
 
     public AgendaViajesFragment() {
@@ -158,6 +156,7 @@ public class AgendaViajesFragment extends Fragment {
                     intent.putExtra("IdViaje", viajes.get(viajesRecycler.getChildAdapterPosition(view)).getIdViaje());
                     intent.putExtra("btnIrAPerfilOfertante", "Si");
                     intent.putExtra("btnAgregaViajeALista", "No");
+                    intent.putExtra("btnEliminarViaje", "No");
 
                     String color = traeColor(viajes.get(viajesRecycler.getChildAdapterPosition(view)).getFechaApoxSalida());
                     if(color.equals(colorVerde)){

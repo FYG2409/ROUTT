@@ -18,6 +18,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
+                    android:backgroundTint="@color/salmon"
                     android:digits="abcdefghijklmnñopqrstuvxwyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
                     android:hint="@string/hint_nombre"/>
                 <EditText
@@ -25,6 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
+                    android:backgroundTint="@color/salmon"
                     android:digits="abcdefghijklmnñopqrstuvxwyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
                     android:hint="@string/hint_apellido_Paterno"/>
                 <EditText
@@ -32,6 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
+                    android:backgroundTint="@color/salmon"
                     android:digits="abcdefghijklmnñopqrstuvxwyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
                     android:hint="@string/hint_apellido_Materno"/>
                 <LinearLayout
@@ -42,6 +45,7 @@
                         android:id="@+id/edad"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/salmon"
                         android:inputType="numberSigned"
                         android:hint="@string/hint_edad"/>
                     <Switch
@@ -54,18 +58,21 @@
                     android:id="@+id/correo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/salmon"
                     android:inputType="textEmailAddress"
                     android:hint="@string/hint_correoElectronico"/>
                 <EditText
                     android:id="@+id/contra"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/salmon"
                     android:inputType="textPassword"
                     android:hint="@string/hint_contraseña"/>
                 <EditText
                     android:id="@+id/confirmaContra"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/salmon"
                     android:inputType="textPassword"
                     android:hint="@string/hint_confirma_Contraseña"/>
                 <ImageView
@@ -73,7 +80,7 @@
                     android:layout_width="200dp"
                     android:layout_gravity="center"
                     android:layout_height="150dp"
-                    android:background="@drawable/agrega_imagen_icon"
+                    android:background="@drawable/nueva_imagen_icon"
                     android:onClick="corre"
                     android:elevation="20dp"
                     android:scaleType="centerCrop"/>
@@ -87,7 +94,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@color/azulFuerte"
                     android:onClick="creaPersona"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="@android:color/white"/>
         </LinearLayout>
     </ScrollView>
     </android.support.constraint.ConstraintLayout>

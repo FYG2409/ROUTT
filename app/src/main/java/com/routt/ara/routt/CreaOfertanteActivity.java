@@ -185,7 +185,7 @@ public class CreaOfertanteActivity extends AppCompatActivity {
                 }else
                     //msj la contraseña debe tener al menos 6 caracteres
                     Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres :(", Toast.LENGTH_SHORT).show();
-                contra.requestFocus();
+                    contra.requestFocus();
             }else{
                 //mjs no puedes trabajar con esa edad
                 Toast.makeText(this, "Aun eres muy pequeño para trabajar :(", Toast.LENGTH_SHORT).show();
@@ -206,10 +206,10 @@ public class CreaOfertanteActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null){
-                    Log.w("creaPersonaActivity", "onAuthStateChanged - signed_in" + firebaseUser.getUid());
-                    Log.w("creaPersonaActivity", "onAuthStateChanged - signed_in" + firebaseUser.getEmail());
+                    Log.w("creaOfertanteActivity", "onAuthStateChanged - signed_in" + firebaseUser.getUid());
+                    Log.w("creaOfertanteActivity", "onAuthStateChanged - signed_in" + firebaseUser.getEmail());
                 }else
-                    Log.w("creaPersonaActivity", "onAuthStateChanged - signed_out");
+                    Log.w("creaOfertanteActivity", "onAuthStateChanged - signed_out");
 
             }
         };

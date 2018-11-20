@@ -48,4 +48,12 @@
     <string name="IrAPerfilOfertante">Ir a perfil del ofertante</string>
     <string name="eliminarDeMiLista">Eliminar viaje de mi lista</string>
     <string name="calificarOfertante">Calificar ofertante</string>
+    <string name="IrAPerfilDeLaPersona">Ir a perfil de la persona</string>
+    <string name="calificarPersona">Califica persona</string>
+    <string name="eliminarViaje">Eliminar viaje</string>
+    <string name="ComoTeGustariaRegistrate">¿Como te gustaria registrarte?</string>
+    <string name="tipoCaja">Tipo de caja</string>
+    <string name="dobleRemolque">Doble remolque</string>
+    <string name="RControl">Recurso confiable</string>
+    <string name="experiencia">Califica al ofertante</string>
 </resources>

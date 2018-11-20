@@ -19,6 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_nombre"
+                android:backgroundTint="@color/salmon"
                 android:inputType="textPersonName"
                 android:digits="abcdefghijklmnñopqrstuvxwyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
                 android:maxLength="20" />
@@ -27,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
+                android:backgroundTint="@color/salmon"
                 android:digits="abcdefghijklmnñopqrstuvxwyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
                 android:maxLength="20"
                 android:hint="@string/hint_apellido_Paterno"/>
@@ -35,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
+                android:backgroundTint="@color/salmon"
                 android:digits="abcdefghijklmnñopqrstuvxwyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
                 android:maxLength="20"
                 android:hint="@string/hint_apellido_Materno"/>
@@ -42,6 +45,7 @@
                 android:id="@+id/edad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/salmon"
                 android:inputType="numberSigned"
                 android:maxLength="2"
                 android:hint="@string/hint_edad"/>
@@ -49,18 +53,21 @@
                 android:id="@+id/correo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/salmon"
                 android:inputType="textEmailAddress"
                 android:hint="@string/hint_correoElectronico"/>
             <EditText
                 android:id="@+id/contra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/salmon"
                 android:inputType="textPassword"
                 android:hint="@string/hint_contraseña"/>
             <EditText
                 android:id="@+id/confirmaContra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/salmon"
                 android:inputType="textPassword"
                 android:hint="@string/hint_confirma_Contraseña"/>
 
@@ -69,17 +76,16 @@
                 android:layout_width="164dp"
                 android:layout_height="132dp"
                 android:layout_gravity="center"
+
                 android:background="@drawable/useramarillo"
                 android:elevation="20dp"
-                android:onClick="corre"
                 android:scaleType="centerCrop" />
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/btnImagen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                app:srcCompat="@drawable/agrega_imagen_icon"
-                tools:srcCompat="@drawable/agrega_imagen_icon" />
+                tools:background="@drawable/nueva_imagen_icon" />
 
             <Button
                 android:id="@+id/btnAgregaPersona"
@@ -90,8 +96,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/azulFuerte"
                 android:onClick="creaPersona"
-                android:textColor="@android:color/black"/>
-
+                android:textColor="@android:color/white"/>
 
         </LinearLayout>
     </ScrollView>

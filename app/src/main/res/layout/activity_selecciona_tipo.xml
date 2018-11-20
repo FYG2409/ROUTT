@@ -1,35 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SeleccionaTipoActivity">
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical">
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¿Como te quieres registrar?'"
-            android:textSize="20dp" />
-        <Button
-            android:id="@+id/trailero"
+            android:text="@string/ComoTeGustariaRegistrate"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"/>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="84dp"
-            android:text="Trailero"
-            android:onClick="irACreaTrailero"
-            android:background="@color/amarilloFuerte"/>
-
-        <Button
-            android:id="@+id/ofertante"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ofertante"
-            android:onClick="irACreaOfertante"
-            android:background="@color/azulFuerte"/>
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/trailero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="irACreaTrailero"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/avatar_trailero"/>
+            <ImageView
+                android:id="@+id/ofertante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="irACreaOfertante"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/avatar_ofertante"/>
+        </LinearLayout>
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>

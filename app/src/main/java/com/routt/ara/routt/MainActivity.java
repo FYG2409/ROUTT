@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
 
-    private String correo;
+    private String correo, contra;
     private int tipo;
 
     @Override
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         Persona persona = snapshot.getValue(Persona.class);
                         if((txtEmail.getText().toString()).equals(persona.getCorreo())){
                             tipo = persona.getTipo();
+                            contra = persona.getContraseña();
                         }
                     }
                 }
@@ -85,23 +86,23 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(txtEmail.getText().toString(), txtContra.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    if(tipo == 1){
+                if (task.isSuccessful()) {
+                    if (tipo == 1) {
                         Toast.makeText(MainActivity.this, "Bienvenido Ofertante", Toast.LENGTH_SHORT).show();
                         irAContenedorOfertante();
-                    }else
-                        if(tipo == 0){
-                            Toast.makeText(MainActivity.this, "Bienvenido Trailero", Toast.LENGTH_SHORT).show();
-                            irAContenedorTrailero();
-                        }else{
-                            Toast.makeText(MainActivity.this, "No se encontro el usuario", Toast.LENGTH_SHORT).show();
-                        }
-                }else{
-                    Log.w("Login", "ERROR AL INICIAR SESION: " + task.getException().getMessage());
+                    } else if (tipo == 0) {
+                        Toast.makeText(MainActivity.this, "Bienvenido Trailero", Toast.LENGTH_SHORT).show();
+                        irAContenedorTrailero();
+                    } else {
+                        Toast.makeText(MainActivity.this, "No se encontro el usuario", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.w("MainActivity", "ERROR AL INICIAR SESION: " + task.getException().getMessage());
                     Toast.makeText(MainActivity.this, "Error al iniciar sesion", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
     }
 
     public void irAContenedorTrailero(){
@@ -120,10 +121,10 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null){
-                    Log.w("Login", "onAuthStateChanged - signed_in " + firebaseUser.getUid());
-                    Log.w("Login", "onAuthStateChanged - signed_in " + firebaseUser.getEmail());
+                    Log.w("MainActivity", "onAuthStateChanged - signed_in " + firebaseUser.getUid());
+                    Log.w("MainActivity", "onAuthStateChanged - signed_in " + firebaseUser.getEmail());
                 }else
-                    Log.w("Login", "onAuthStateChanged - signed_out");
+                    Log.w("MainActivity", "onAuthStateChanged - signed_out");
 
             }
         };

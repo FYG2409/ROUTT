@@ -33,7 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PerfilActivity extends AppCompatActivity {
 
-    private String correoOfertante;
+    private String correoPersona;
 
     private CircleImageView imagen;
     private DatabaseReference databaseReference;
@@ -69,7 +69,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     public void recibeDatos(){
         Bundle extras = getIntent().getExtras();
-        correoOfertante = extras.getString("correoOfertante");
+        correoPersona = extras.getString("correoOfertante");
     }
 
     public void traePersona(){
@@ -79,7 +79,8 @@ public class PerfilActivity extends AppCompatActivity {
                 if(dataSnapshot.exists()){
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                         Persona persona = snapshot.getValue(Persona.class);
-                        if(correoOfertante.equals(persona.getCorreo())){
+
+                        if(correoPersona.equals(persona.getCorreo())){
 
                             nombre.setText(persona.getNombre());
                             apellidos.setText(persona.getApePaat() +" "+ persona.getApeMat());
@@ -96,7 +97,7 @@ public class PerfilActivity extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w("PerfilFragment", "ERROR AL ENCONTRAR DATOS DE USUARIO: " + databaseError.getMessage());
+                Log.w("PerfilActivity", "ERROR AL ENCONTRAR DATOS DE USUARIO: " + databaseError.getMessage());
             }
         });
     }
