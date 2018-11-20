@@ -60,7 +60,7 @@ public class ContenedorOfertanteActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } catch (Exception e) {
-            Log.w("ContenedorTrailero", "ERROR AL CERRAR SESION: " + e.getMessage());
+            Log.w("ContenedorOfertante", "ERROR AL CERRAR SESION: " + e.getMessage());
             Toast.makeText(this, "Error al cerrar sesion", Toast.LENGTH_SHORT).show();
         }
     }

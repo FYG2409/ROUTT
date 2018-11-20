@@ -64,7 +64,7 @@ public class PerfilActivity extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w("PerfilFragment", "ERROR AL ENCONTRAR DATOS DE USUARIO: " + databaseError.getMessage());
+                Log.w("PerfilActivity", "ERROR AL ENCONTRAR DATOS DE USUARIO: " + databaseError.getMessage());
             }
         });
     }

@@ -137,7 +137,7 @@ public class MisViajesFragment extends Fragment {
         try{
             fechaActual = new SimpleDateFormat("dd/MM/yyyy").parse(cadenaFecha);
         }catch(Exception e){
-            Log.w("AgendaViajes", "Error al parsear fecha actual " + e.getMessage());
+            Log.w("MisViajes", "Error al parsear fecha actual " + e.getMessage());
         }
 
         int diaV = Integer.parseInt(String.valueOf(fechaV.charAt(0)) + String.valueOf(fechaV.charAt(1)));
@@ -148,7 +148,7 @@ public class MisViajesFragment extends Fragment {
         try{
             fechaViaje = new SimpleDateFormat("dd/MM/yyyy").parse(cadenaFechaViaje);
         }catch(Exception e){
-            Log.w("AgendaViajes", "Error al parsear fecha de viaje " + e.getMessage());
+            Log.w("MisViajes", "Error al parsear fecha de viaje " + e.getMessage());
         }
 
         if((Boolean.toString(disponible)).equals("false")){

@@ -119,7 +119,7 @@ public class CreaTraileroActivity extends AppCompatActivity {
                                         Toast.makeText(CreaTraileroActivity.this, "Este correo ya esta en uso :(", Toast.LENGTH_SHORT).show();
                                         correo.requestFocus();
                                     } else{
-                                        Log.w("CreaOfertanteActivity", "Error al crear cuenta:  " + task.getException().hashCode() + " MENSAJE " + task.getException().getMessage());
+                                        Log.w("CreaTraileroActivity", "Error al crear cuenta:  " + task.getException().hashCode() + " MENSAJE " + task.getException().getMessage());
                                         Toast.makeText(CreaTraileroActivity.this, "No se pudo crear la cuenta :(", Toast.LENGTH_SHORT).show();
                                     }
                                 }
