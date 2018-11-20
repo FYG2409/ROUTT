@@ -1,82 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.InfoViaje">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/cantidadCarga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/carga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/dobleRemolque"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/fechaAproxSalida"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/nombreLugarLlegada"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/nombreLugarSalida"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/pago"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/rControl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/tipoCaja"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="155dp"
+            android:elevation="5dp"
+            android:src="@drawable/finfo"
+            android:scaleType="centerCrop"
+            />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+            <TextView
+                android:id="@+id/nombreLugarSalida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="Baja California Sur"/>
+            <TextView
+                android:id="@+id/nombreLugarLlegada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="San Luis Potosi"
+                android:layout_gravity="right"
+                android:textSize="25sp"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/hint_fecha"
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/fechaAproxSalida"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:textSize="18sp"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/carga"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:id="@+id/carga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_gravity="end"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="@string/cantidad"/>
+                <TextView
+                    android:id="@+id/cantidadCarga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_gravity="end"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="@string/tipoCaja"/>
+                <TextView
+                    android:id="@+id/tipoCaja"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_gravity="end"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hint_pago"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:id="@+id/pago"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_gravity="end"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dobleRemolque"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:id="@+id/dobleRemolque"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_gravity="end"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/RControl"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:id="@+id/rControl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_gravity="end"/>
+            </FrameLayout>
         <Button
             android:id="@+id/btnAgregaViajeALista"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/agregarAMiLista"
+            android:background="@color/salmon"
+            android:textColor="@color/blanco"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
             android:onClick="agregandoViajeAMiLista"/>
         <Button
             android:id="@+id/btnIrAPerfilOfertante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="yendoAPerfilDeLaPersona"
+            android:background="@color/salmon"
+            android:textColor="@color/blanco"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
             android:text="@string/IrAPerfilDeLaPersona" />
         <Button
             android:id="@+id/btnEliminarViajeDeLista"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/eliminarDeMiLista"
+            android:background="@color/salmon"
+            android:textColor="@color/blanco"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
             android:onClick="eliminandoViajeDeMiLista"/>
         <Button
             android:id="@+id/btnCalificarOfertante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/calificarPersona"
+            android:background="@color/salmon"
+            android:textColor="@color/blanco"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
             android:onClick="calificandoPersona"/>
-
-
-
         <Button
             android:id="@+id/btnEliminarViaje"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/eliminarViaje"
+            android:background="@color/salmon"
+            android:textColor="@color/blanco"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
             android:onClick="eliminandoViaje"/>
+        </LinearLayout>
+        </ScrollView>
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>

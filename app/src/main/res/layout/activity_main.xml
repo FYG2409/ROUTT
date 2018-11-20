@@ -6,15 +6,107 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.routt.ara.routt.MainActivity"
-    android:background="@drawable/flogin">
+    android:background="@drawable/finfo">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="263dp"
+                android:layout_height="214dp"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/logoroutt" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_weight="0.45">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="205dp"
+                    android:alpha="0.2"
+                    android:background="#2F1230">
+                </View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="45dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="45dp"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/txtEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_correoElectronico"
+                        android:textColor="@color/blanco"
+                        android:textColorHint="@color/blanco"
+                        android:inputType="textEmailAddress"
+                        android:backgroundTint="@color/blanco"
+                        />
+
+                    <EditText
+                        android:id="@+id/txtContra"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_contraseña"
+                        android:textColor="@color/blanco"
+                        android:textColorHint="@color/blanco"
+                        android:inputType="textPassword"
+                        android:backgroundTint="@color/blanco"/>
+
+                    <Button
+                        android:id="@+id/btnEntra"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:alpha="1"
+                        android:onClick="IniciaSesion"
+                        android:background="@color/azulClaro"
+                        android:text="@string/text_button_login" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/noTienesCuenta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/blanco"
+                            android:text="@string/no_tienes_cuenta" />
+
+                        <TextView
+                            android:id="@+id/creaCuenta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/noTienesCuenta"
+                            android:text="@string/crea_una_aqui"
+                            android:textStyle="bold"
+                            android:textColor="@color/blanco"
+                            android:onClick="irASeleccionaTipo"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -114,7 +206,7 @@
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
-
+-->
     </ScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

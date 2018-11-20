@@ -18,10 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Referencia"
-            android:label="@string/title_activity_referencia"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.Trailero.ContenedorTraileroActivity" />
         <activity android:name=".view.Ofertante.CreaViajeActivity" />
         <activity android:name=".CreaTraileroActivity" />

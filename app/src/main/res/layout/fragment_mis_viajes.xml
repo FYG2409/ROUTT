@@ -33,6 +33,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"
+        android:backgroundTint="@color/salmon"
         app:srcCompat="@drawable/plus_icon" />
 
 </FrameLayout>
