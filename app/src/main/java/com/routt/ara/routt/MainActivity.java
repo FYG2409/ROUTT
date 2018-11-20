@@ -83,32 +83,26 @@ public class MainActivity extends AppCompatActivity {
 
     public void IniciaSesion(View view) {
         buscaTipoDePersona();
-        if(contra.equals(txtContra.getText().toString())){
-
-            firebaseAuth.signInWithEmailAndPassword(txtEmail.getText().toString(), txtContra.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        if(tipo == 1){
-                            Toast.makeText(MainActivity.this, "Bienvenido Ofertante", Toast.LENGTH_SHORT).show();
-                            irAContenedorOfertante();
-                        }else
-                        if(tipo == 0){
-                            Toast.makeText(MainActivity.this, "Bienvenido Trailero", Toast.LENGTH_SHORT).show();
-                            irAContenedorTrailero();
-                        }else{
-                            Toast.makeText(MainActivity.this, "No se encontro el usuario", Toast.LENGTH_SHORT).show();
-                        }
-                    }else{
-                        Log.w("MainActivity", "ERROR AL INICIAR SESION: " + task.getException().getMessage());
-                        Toast.makeText(MainActivity.this, "Error al iniciar sesion", Toast.LENGTH_SHORT).show();
+        firebaseAuth.signInWithEmailAndPassword(txtEmail.getText().toString(), txtContra.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    if (tipo == 1) {
+                        Toast.makeText(MainActivity.this, "Bienvenido Ofertante", Toast.LENGTH_SHORT).show();
+                        irAContenedorOfertante();
+                    } else if (tipo == 0) {
+                        Toast.makeText(MainActivity.this, "Bienvenido Trailero", Toast.LENGTH_SHORT).show();
+                        irAContenedorTrailero();
+                    } else {
+                        Toast.makeText(MainActivity.this, "No se encontro el usuario", Toast.LENGTH_SHORT).show();
                     }
+                } else {
+                    Log.w("MainActivity", "ERROR AL INICIAR SESION: " + task.getException().getMessage());
+                    Toast.makeText(MainActivity.this, "Error al iniciar sesion", Toast.LENGTH_SHORT).show();
                 }
-            });
+            }
+        });
 
-        }else{
-            Toast.makeText(MainActivity.this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
-        }
     }
 
     public void irAContenedorTrailero(){

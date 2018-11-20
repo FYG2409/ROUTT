@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.routt.ara.routt.R;
 import com.routt.ara.routt.model.Persona;
 import com.routt.ara.routt.model.Viaje;
+import com.routt.ara.routt.view.Ofertante.ContenedorOfertanteActivity;
 import com.routt.ara.routt.view.Trailero.ContenedorTraileroActivity;
 import com.routt.ara.routt.view.fragments.PerfilFragment;
 
@@ -193,6 +194,8 @@ public class InfoViaje extends AppCompatActivity {
     public void eliminandoViaje(View view){
         databaseReference.child("Viajes").child(idViaje).removeValue();
         Toast.makeText(this, "El viaje fue eliminado", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, ContenedorOfertanteActivity.class);
+        startActivity(intent);
     }
 
     public void traePersona(){
