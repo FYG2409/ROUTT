@@ -76,8 +76,8 @@
                 android:layout_width="164dp"
                 android:layout_height="132dp"
                 android:layout_gravity="center"
-
-                android:background="@drawable/useramarillo"
+                android:src="@drawable/avatar_ofertante"
+                android:background="@drawable/avatar_ofertante"
                 android:elevation="20dp"
                 android:scaleType="centerCrop" />
             <android.support.design.widget.FloatingActionButton
@@ -85,7 +85,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                tools:background="@drawable/nueva_imagen_icon" />
+                android:src="@drawable/nueva_imagen_icon"
+                android:background="@drawable/nueva_imagen_icon" />
 
             <Button
                 android:id="@+id/btnAgregaPersona"

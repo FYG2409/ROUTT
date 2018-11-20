@@ -1,9 +1,11 @@
 package com.routt.ara.routt;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,20 +16,26 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.routt.ara.routt.MainActivity;
 import com.routt.ara.routt.R;
 import com.routt.ara.routt.model.Persona;
+import com.routt.ara.routt.view.PresenterPrincipal;
 
 public class CreaTraileroActivity extends AppCompatActivity {
 
-
+    private FloatingActionButton cargaImg;
     private ImageView imagen;
     private EditText nombre, apePat, apeMat, edad, correo, contra, confirmaContra;
     private Switch rControl;
@@ -38,7 +46,9 @@ public class CreaTraileroActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
-
+    private StorageReference mStorage;
+    private static  final int GALLERY_INTENT =1;
+    private ProgressDialog progressDialo;  // mensaje de carga de imagen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,26 +67,56 @@ public class CreaTraileroActivity extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
+        cargaImg=(FloatingActionButton) findViewById(R.id.btnImagen);
+        mStorage= FirebaseStorage.getInstance().getReference();
+        progressDialo=new ProgressDialog(this);
+
+        cargaImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, GALLERY_INTENT);
+
+            }
+        });
     }
 
-    public void corre(View view){
-        cargarImagen();
-    }
 
-    public void cargarImagen(){
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/");
-        startActivityForResult(intent.createChooser(intent, "Selecciona una imagen"),10);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK){
-            Uri path = data.getData();
-            imagen.setImageURI(path);
+        if(requestCode== GALLERY_INTENT && requestCode != RESULT_OK){
+            progressDialo.setTitle("Cargando ..");
+            progressDialo.setMessage("Cargando previsualización");
+            progressDialo.setCancelable(false);
+            progressDialo.show();
+            txtNombre = nombre.getText().toString();
+
+            final Uri uri = data.getData();
+            final StorageReference filePath=mStorage.child("Fotos").child(txtNombre).child(uri.getLastPathSegment());//lo guarda aqui
+            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    progressDialo.dismiss();
+
+                    Uri descargarImg= taskSnapshot.getDownloadUrl();
+                    Glide.with(CreaTraileroActivity.this)
+                            .load(descargarImg)
+                            .into(imagen);
+
+                    PresenterPrincipal presenterPrincipal=new PresenterPrincipal(descargarImg, txtNombre);
+                    Toast.makeText(CreaTraileroActivity.this, "Imagen subida correctamente", Toast.LENGTH_LONG).show();
+
+                }
+            });
+        }
+        else {
+            Toast.makeText(CreaTraileroActivity.this, "algo esta mal", Toast.LENGTH_LONG).show();
         }
     }
+
 
     public void creaPersona(View view){
         //txtImagen = imagen.getText().toString();

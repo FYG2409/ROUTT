@@ -75,26 +75,34 @@
                     android:backgroundTint="@color/salmon"
                     android:inputType="textPassword"
                     android:hint="@string/hint_confirma_Contraseña"/>
-                <ImageView
-                    android:id="@+id/imagenId"
-                    android:layout_width="200dp"
-                    android:layout_gravity="center"
-                    android:layout_height="150dp"
-                    android:background="@drawable/nueva_imagen_icon"
-                    android:onClick="corre"
-                    android:elevation="20dp"
-                    android:scaleType="centerCrop"/>
+
+            <ImageView
+                android:id="@+id/imagenId"
+                android:layout_width="165dp"
+                android:layout_height="139dp"
+                android:layout_gravity="center"
+                android:background="@drawable/avatar_trailero"
+                android:elevation="20dp"
+                android:onClick="corre"
+                android:scaleType="centerCrop" />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnImagen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/nueva_imagen_icon"
+                android:background="@drawable/nueva_imagen_icon" />
 
             <Button
-                    android:id="@+id/btnAgregaPersona"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/registrate"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/azulFuerte"
-                    android:onClick="creaPersona"
-                    android:textColor="@android:color/white"/>
+                android:id="@+id/btnAgregaPersona"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@color/azulFuerte"
+                android:onClick="creaPersona"
+                android:text="@string/registrate"
+                android:textColor="@android:color/white" />
         </LinearLayout>
     </ScrollView>
     </android.support.constraint.ConstraintLayout>
